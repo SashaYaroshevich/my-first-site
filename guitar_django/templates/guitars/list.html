@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Виды гитар{% endblock %}
+
+{% block content %}
+
+    {% if latest_guitars_list %}
+    
+        {% for a in latest_guitars_list %}
+            <a href="{% url 'guitars:detail' a.id %}">{{a.guitar_title}}</a><br>    
+        {% endfor %}
+
+    {% else %}
+        не найдены )=
+    {% endif %}
+
+
+{% endblock %}

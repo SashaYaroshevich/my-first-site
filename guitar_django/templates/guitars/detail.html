@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{guitar.guitar_title}}{% endblock %}
+
+{% block content %}
+
+<h2>{{guitar.guitar_title}}</h2>
+
+<p>{{guitar.guitar_text}}</p>
+
+
+
+
+<hr>
+
+{% if latest_comments_list %}
+
+    {% for c in latest_comments_list %}
+        <p>
+            <strong>{{c.author_name}}</strong> 
+            <p>{{c.comment_text}}</p>        
+        </p>
+    {% endfor %}
+
+{% else %}
+Комментарии не найдены! Станьте первым
+{% endif %}
+
+<hr>
+
+<form action="{% url 'guitars:leave_comment' guitar.id %}" method="POST">
+
+
+    {% csrf_token %}    
+
+    <input type="text" required placeholder="Ваше имя" name="name"><br>
+    <textarea name="text" required="" placeholder="Текст комментария" cols="30" rows="10"></textarea><br>
+
+    <button type="submit">Оставить комментарий</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+{% if wish %}
+
+
+{% for a in wish%}
+
+    <div class="alert alert-warning mt-2">
+
+        <h3>{{ a.title_message }}</h3>
+        <p>{{ a.message }}</p>
+    </div>
+
+{% endfor %}
+
+{% else %}
+<p>нету пожеланий, стань первым</p>
+
+{% endif %}
+
+<a class="alert alert-warning mt-2" href="{% url 'info:create' %}">Перейди на страницу создания пожеланий</a>
+
+{% endblock %}
